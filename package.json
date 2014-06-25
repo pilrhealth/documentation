@@ -5,6 +5,8 @@
   "main": "index.js",
   "devDependencies": {
     "metalsmith": "~0.8.0",
-    "metalsmith-markdown": "~0.2.1"
+    "metalsmith-markdown": "~0.2.1",
+    "metalsmith-templates": "~0.5.1",
+    "handlebars": "~2.0.0-alpha.4"
   }
 }
