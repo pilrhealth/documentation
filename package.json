@@ -4,6 +4,7 @@
   "description": "PiLR Health Documentation",
   "main": "index.js",
   "devDependencies": {
-    "metalsmith": "~0.8.0"
+    "metalsmith": "~0.8.0",
+    "metalsmith-markdown": "~0.2.1"
   }
 }
