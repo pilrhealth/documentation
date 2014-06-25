@@ -1,0 +1,9 @@
+{
+  "name": "pilrdocs",
+  "version": "0.0.1",
+  "description": "PiLR Health Documentation",
+  "main": "index.js",
+  "devDependencies": {
+    "metalsmith": "~0.8.0"
+  }
+}
