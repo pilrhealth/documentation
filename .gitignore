@@ -1,4 +1,6 @@
 .tern-port
 node_modules/
 build/
+src/assets/
+
 
