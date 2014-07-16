@@ -2,7 +2,7 @@ PiLR Health Documentation
 =========================
 
 This repository contains the source files for generating the PiLR
-Health documentation. The live version can be found at <http://pilrhealth.github.io/documentation]>.
+Health documentation. The live version can be found at <http://pilrhealth.github.io/documentation>.
 
 ## Contribute
 
