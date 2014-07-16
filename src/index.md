@@ -5,12 +5,12 @@ template: home.hbt
  
 ## Topics
 
-### [Basics](/pages/about)
+### [Basics](pages/basics)
 
-### [Tutorial](/pages/tutorial)
+### [Tutorial](pages/tutorial)
 
-### [API Documentation](/pages/api)
+### [API Documentation](pages/api)
 
-### [R Packages](/pages/r)
+### [R Packages](pages/r)
 
-### [PiLR Glossary](/pages/glossary)
+### [PiLR Glossary](pages/glossary)

@@ -20,10 +20,10 @@ var gulpsmith = require('gulpsmith'),
     permalinks  = require('metalsmith-permalinks');
 
 
-var js_dir = './build/assets/javascripts';
-var css_dir = './build/assets/styles';
-var image_dir = './build/assets/images';
-var inst_dir = './build';
+var js_dir = './build/documentation/assets/javascripts';
+var css_dir = './build/documentation/assets/styles';
+var image_dir = './build/documentation/assets/images';
+var inst_dir = './build/documentation';
 
 
 Handlebars.registerPartial('header', 
@@ -90,9 +90,9 @@ gulp.task('webserver', function() {
 
 // livereload for development
 gulp.task('livereload', function() {
-  gulp.src(['./build/assets/**/*.js', './build/assets/**/*.css', 
-            './build/pages/**/*.html',
-            './build/index.html'])
+  gulp.src(['./build/documentation/assets/**/*.js', './build/assets/**/*.css', 
+            './build/documentation/pages/**/*.html',
+            './build/documentation/index.html'])
     .pipe(watch())
     .pipe(connect.reload());
 });
