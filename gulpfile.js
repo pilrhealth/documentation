@@ -10,6 +10,7 @@ var watch  = require('gulp-watch');
 var debug =  require('gulp-debug');
 var assign = require('lodash.assign');
 var gulp_front_matter = require('gulp-front-matter');
+var gh_pages = require('gulp-gh-pages');
 var gulpsmith = require('gulpsmith'),
     markdown    = require('metalsmith-markdown'),
     templates   = require('metalsmith-templates'),
@@ -22,6 +23,7 @@ var gulpsmith = require('gulpsmith'),
 var js_dir = './build/assets/javascripts';
 var css_dir = './build/assets/styles';
 var inst_dir = './build';
+
 
 Handlebars.registerPartial('header', 
                            fs.readFileSync(__dirname +
@@ -98,11 +100,20 @@ gulp.task('watch', function() {
     gulp.watch('./src/content/**/*.md', ['metalsmith']);
 });
 
+// publish build directory to gh-pages branch
+gulp.task('gh-pages', function() {
+    gulp.src('./build/**/*')
+        .pipe(gh_pages());
+});
+
 // default task, build
 gulp.task('default', ['metalsmith', 'js_bower_components', 'css_bower_components']);
 
-// server task, test
+// server task
 gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components',
                      'watch', 'webserver', 'livereload']);
+
+// deploy task
+gulp.task('deploy' ['gh-pages']);
 
 

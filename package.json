@@ -22,6 +22,8 @@
     "gulpsmith": "~0.4.2",
     "gulp-front-matter": "~1.0.0",
     "gulp-debug": "~0.3.0",
-    "lodash.assign": "~2.4.1"
+    "lodash.assign": "~2.4.1",
+    "buildbranch": "0.0.1",
+    "gulp-gh-pages": "~0.3.3"
   }
 }
