@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- add stylesheet links here -->
+    <link href="./assets/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+<h2>API</h2>
+
+<article>
+  <h1 id="pilr-api-documentation">PiLR API Documentation</h1>
+<p>The API for the PiLR Health platform allows developers to read and
+nwrite participant information and data through an HTTP REST interface.
+Typically, there are two reasons that an individual would access the API. </p>
+<ol>
+<li><p>A smartphone application or device that participants use to
+generate data can read participant-specific settings and
+configuration values from the API, and write participant data to
+the API.</p>
+</li>
+<li><p>A data processing or analysis tool can access datasets and settings
+and configuration values for multiple participants, and then pass
+the data into a function for analysis.</p>
+</li>
+</ol>
+<p>For these two types of use cases, we provide different levels of API
+access.  We have split out the sections below to address each
+individually. However, first we will discuss security. </p>
+<h2 id="security-authentication-and-authorization">Security: Authentication and Authorization</h2>
+<p>All PiLR API calls are subject to an authentication process. To
+succesfully access the API, each request the client sends should
+provide an access token in the header of the HTTP request.  This
+access token must be put in the <code>authorization</code> header variable,
+immediately after the constant string &#39;bearer&#39;. For example, if
+$access_token is your access token, then the HTTP header should
+contain the following field:</p>
+<pre><code>authorization: &quot;bearer $access_token&quot;
+</code></pre><p>To reiterate, the literal word &#39;bearer&#39; should appear in the field.</p>
+<p>How do you get an access token? The client application is known to
+PilR as an /API consumer/. Each API consumer is added through the PiLR
+web service. When an API consumer is created, an /activation key/ is
+set by the project team member creating the consumer. To obtain an
+access code, the consumer makes an API call to the /token service/,
+and provides the activation key. The token service responds with the
+access code.</p>
+<p>The token service can be called remotely by submitting a GET request
+to the following resource.</p>
+<h3 id="obtain-access-token">Obtain Access Token</h3>
+<p>Obtain an access token for a given API consumer, given an activation
+key defined in PiLR.</p>
+<pre><code>GET /api/token
+</code></pre><ul>
+<li>Parameters</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>activation_key</td>
+<td>string</td>
+<td>Activation key obtained in PiLR</td>
+<td>true     </td>
+</tr>
+</tbody>
+</table>
+<h2 id="participant-api">Participant API</h2>
+<h3 id="overview">Overview</h3>
+<p>For participants who are using an application on a mobile device, the
+application will communicate with the platform through the
+&quot;Participant API&quot;.  These requests are designed to limit the
+participant to information about themselves and the instrument the
+application is linked to.</p>
+<p>IMPORTANT: To access this API, the client device must know the
+instrument code.  Without that, it will not be able to access any
+information after the activation step.</p>
+<h3 id="participant-api-documentation">Participant API Documentation</h3>
+<p>Variable Definitions</p>
+<ul>
+<li>$activation_key :: set for each API consumer created</li>
+<li>$project :: project code</li>
+<li>$participant :: participant code</li>
+<li>$instrument :: instrument code</li>
+</ul>
+<h4 id="list-participant-information">List participant information</h4>
+<p>Participant and project information</p>
+<pre><code>GET /api/$project/participant/$participant
+</code></pre><h4 id="list-participant-periods">List Participant Periods</h4>
+<p>List of periods the instrument is scheduled for this participant, with
+dates if applicable.</p>
+<pre><code>GET  /api/$project/instrument/$instrument/
+      participant/$participant/period
+</code></pre><h4 id="list-instrument-settings">List Instrument Settings</h4>
+<p>List of instrument setting values for that period, including multiple epochs.</p>
+<pre><code>GET /api/$project/instrument/$instrument 
+    /participant/$participant /period/$period/setting
+</code></pre><h4 id="list-configuration-data">List Configuration Data</h4>
+<p>Config data specific to that instrument and period.</p>
+<pre><code>GET /api/$project/instrument/$instrument/
+     participant/$participant/period/$period/config
+</code></pre><h4 id="list-datasets">List Datasets</h4>
+<p>List of data sets and schemas linked to the instrument.</p>
+<pre><code>GET /api/$project/instrument/$instrument 
+    /participant/$participant/dataset
+</code></pre><h4 id="read-participant-data">Read Participant Data</h4>
+<p>Read participant data from a dataset. See Instrument API Parameters.</p>
+<pre><code>GET /api/$project/instrument/$instrument/
+     participant/$participant/
+     dataset/$dataset/$schema_version/data
+</code></pre><h4 id="write-participant-data">Write Participant Data</h4>
+<p>Add new data for that dataset. Data must be in body.</p>
+<pre><code>POST /api/$project/instrument/$instrument/
+      participant/$participant/
+      dataset/$dataset/$schema_version/data
+</code></pre><h3 id="processing-api">Processing API</h3>
+<h3 id="overview">Overview</h3>
+<p>The API is for importing participant data to a project repository, or
+fetching data with simple query criteria.  The fetching data
+capabilities provides a minimal set of criteria parameters (outlined
+below).  Complex queries are not for this API, and rather would be
+conducted on a separate data export service.</p>
+<p>Another way of stating it, is that the IO API is designed for
+continuous, daily usage by processing components and analysis
+tools. It it not the mechanism for large batch import and fetch type
+scenarios, such as after project data analysis applications.</p>
+<h3 id="processing-api-documentation">Processing API Documentation</h3>
+<h4 id="list-projects">List projects</h4>
+<p>List projects on the system</p>
+<pre><code>GET /api/project
+</code></pre><h4 id="list-datasets">List datasets</h4>
+<p>List datasets for a project</p>
+<pre><code>GET /api/$project/dataset
+</code></pre><h4 id="list-participants">List participants</h4>
+<p>List participants for a project</p>
+<pre><code>GET /api/$project/participant
+</code></pre><h4 id="list-groups">List groups</h4>
+<p>List groups for a project</p>
+<pre><code>GET /api/$project/group
+</code></pre><h4 id="list-periods">List periods</h4>
+<p>List periods for a project</p>
+<pre><code>GET /api/$project/period
+</code></pre><h4 id="read-data">Read Data</h4>
+<p>Read datasets for a project. See Analysis API Parameters.</p>
+<pre><code>GET    /api/$project/$dataStream/$schema/data    
+See Analysis API Parameters.
+</code></pre><h4 id="write-data">Write Data</h4>
+<p>Write new data to a project. See Analysis API Parameters. </p>
+<pre><code>POST /api/$project/$dataStream/$schema/data
+</code></pre><p>Body: The JSON
+value of the data.</p>
+
+</article>
+
+
+  <!-- add all script tags here -->
+  <script src = ""></script>
+  </body>
+</html>
+
+
+
