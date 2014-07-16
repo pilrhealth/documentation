@@ -107,7 +107,7 @@ gulp.task('watch', function() {
 
 // publish build directory to gh-pages branch
 gulp.task('gh-pages', function() {
-    gulp.src('./build/**/*')
+    gulp.src('./build/documentation/**/*')
         .pipe(gh_pages());
 });
 
