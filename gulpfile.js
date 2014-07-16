@@ -84,6 +84,7 @@ gulp.task('webserver', function() {
 // livereload for development
 gulp.task('livereload', function() {
   gulp.src(['./build/assets/**/*.js', './build/assets/**/*.css', 
+            './build/pages/**/*.html',
             './build/index.html'])
     .pipe(watch())
     .pipe(connect.reload());

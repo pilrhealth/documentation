@@ -28,7 +28,9 @@ One-time setup includes the following commands.
 $ git clone git@github.com:pilrhealth/documentation.git
 $ cd documentation
 $ npm install -g gulp
+$ npm install -g bower
 $ npm install
+$ bower install
 ````
 
 After the one-time setup, you have a few options to build the docs.
@@ -45,7 +47,6 @@ changes, at which point your browser will automatically refresh
 
 ```` 
 $ gulp server 
-
 ````
 
 Build the docs, and push them to the gh-pages branch in the
