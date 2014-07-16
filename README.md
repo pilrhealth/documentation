@@ -2,8 +2,7 @@ PiLR Health Documentation
 =========================
 
 This repository contains the source files for generating the PiLR
-Health documentation, found at <<URL_HERE>>. Versions of the docs can
-also be built in PDF format. 
+Health documentation. The live version can be found at <http://pilrhealth.github.io/documentation]>.
 
 ## Contribute
 
@@ -49,8 +48,9 @@ changes, at which point your browser will automatically refresh
 $ gulp server 
 ````
 
-Build the docs, and push them to the gh-pages branch in the
-documentation repository for publishing
+Build the docs, commit them to the gh-pages branch in the
+documentation repository, and push to Github where they will be
+automatically published.
 
 ````
 $ gulp deploy

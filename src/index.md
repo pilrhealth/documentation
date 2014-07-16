@@ -2,8 +2,15 @@
 title: Home
 template: home.hbt
 ---
-
-This is the PiLR docs landing page. 
-
+ 
 ## Topics
 
+### [Basics](/pages/about)
+
+### [Tutorial](/pages/tutorial)
+
+### [API Documentation](/pages/api)
+
+### [R Packages](/pages/r)
+
+### [PiLR Glossary](/pages/glossary)

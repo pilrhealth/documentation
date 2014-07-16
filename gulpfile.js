@@ -22,6 +22,7 @@ var gulpsmith = require('gulpsmith'),
 
 var js_dir = './build/assets/javascripts';
 var css_dir = './build/assets/styles';
+var image_dir = './build/assets/images';
 var inst_dir = './build';
 
 
@@ -32,7 +33,6 @@ Handlebars.registerPartial('header',
 Handlebars.registerPartial('footer', 
                            fs.readFileSync(__dirname +
 '/templates/partials/footer.hbt').toString());
-
 
 gulp.task('clean', function () {  
     return gulp.src('build', {read: false})
@@ -55,9 +55,14 @@ gulp.task('css_bower_components', function() {
         .pipe(gulp.dest(css_dir));
 });
 
+gulp.task('images', function() {
+    gulp.src('./src/images/**/*')
+        .pipe(gulp.dest(image_dir));
+});
+
 // process markdown files using metalsmith
 gulp.task('metalsmith', function() {
-    gulp.src('src/**/*.md')
+    gulp.src(['src/**/*.md', 'src/index.md'])
         .pipe(gulp_front_matter()).on("data", function(file) {
             assign(file, file.frontMatter); 
             delete file.frontMatter;
@@ -107,13 +112,13 @@ gulp.task('gh-pages', function() {
 });
 
 // default task, build
-gulp.task('default', ['metalsmith', 'js_bower_components', 'css_bower_components']);
+gulp.task('default', ['metalsmith', 'js_bower_components', 'css_bower_components', 'images']);
 
 // server task
-gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components',
+gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components', 'images',
                      'watch', 'webserver', 'livereload']);
 
 // deploy task
-gulp.task('deploy' ['gh-pages']);
+gulp.task('deploy', ['gh-pages']);
 
 
