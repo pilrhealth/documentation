@@ -1,30 +1,28 @@
-var gulp = require('gulp');  
-var gutil = require('gulp-util');  
-var clean = require('gulp-clean');  
-var concat = require('gulp-concat'); 
-var flatten = require('gulp-flatten');
-var minify_css = require('gulp-minify-css');
-var livereload = require('gulp-livereload');
-var connect = require('gulp-connect');
-var watch  = require('gulp-watch');
-var debug =  require('gulp-debug');
-var assign = require('lodash.assign');
-var gulp_front_matter = require('gulp-front-matter');
-var gh_pages = require('gulp-gh-pages');
-var gulpsmith = require('gulpsmith'),
-    markdown    = require('metalsmith-markdown'),
-    templates   = require('metalsmith-templates'),
-    Handlebars  = require('handlebars'),
-    fs          = require('fs'),
-    collections = require('metalsmith-collections'),
-    permalinks  = require('metalsmith-permalinks');
+var gulp        = require('gulp');  
+var gutil       = require('gulp-util');  
+var clean       = require('gulp-clean');  
+var concat      = require('gulp-concat'); 
+var flatten     = require('gulp-flatten');
+var minify_css  = require('gulp-minify-css');
+var livereload  = require('gulp-livereload');
+var connect     = require('gulp-connect');
+var watch       = require('gulp-watch');
+var debug       = require('gulp-debug');
+var assign      = require('lodash.assign');
+var gulp_fm     = require('gulp-front-matter');
+var gh_pages    = require('gulp-gh-pages');
+var gulpsmith   = require('gulpsmith');
+var markdown    = require('metalsmith-markdown');
+var templates   = require('metalsmith-templates');
+var Handlebars  = require('handlebars');
+var fs          = require('fs');
+var collections = require('metalsmith-collections');
+var permalinks  = require('metalsmith-permalinks');
 
-
-var js_dir = './build/documentation/assets/javascripts';
-var css_dir = './build/documentation/assets/styles';
+var js_dir    = './build/documentation/assets/javascripts';
+var css_dir   = './build/documentation/assets/styles';
 var image_dir = './build/documentation/assets/images';
-var inst_dir = './build/documentation';
-
+var inst_dir  = './build/documentation';
 
 Handlebars.registerPartial('header', 
                            fs.readFileSync(__dirname +
@@ -63,7 +61,7 @@ gulp.task('images', function() {
 // process markdown files using metalsmith
 gulp.task('metalsmith', function() {
     gulp.src(['src/**/*.md', 'src/index.md'])
-        .pipe(gulp_front_matter()).on("data", function(file) {
+        .pipe(gulp_fm()).on("data", function(file) {
             assign(file, file.frontMatter); 
             delete file.frontMatter;
         })
@@ -82,7 +80,6 @@ gulp.task('metalsmith', function() {
         .pipe(gulp.dest(inst_dir));
 });
 
-
 // start server with livereload support
 gulp.task('webserver', function() {
     connect.server({livereload : true, root : ['build']});
@@ -90,11 +87,9 @@ gulp.task('webserver', function() {
 
 // livereload for development
 gulp.task('livereload', function() {
-  gulp.src(['./build/documentation/assets/**/*.js', './build/assets/**/*.css', 
-            './build/documentation/pages/**/*.html',
-            './build/documentation/index.html'])
-    .pipe(watch())
-    .pipe(connect.reload());
+    gulp.src(['./build/**/*'])
+        .pipe(watch())
+        .pipe(connect.reload());
 });
 
 // watch files
@@ -102,6 +97,7 @@ gulp.task('watch', function() {
     gulp.watch('./src/assets/**/*.js', ['js_bower_components']);
     gulp.watch('./src/assets/**/*.css', ['css_bower_components']);
     gulp.watch('./src/index.md', ['metalsmith']);
+    gulp.watch('./templates/**/*.htb', ['metalsmith']);
     gulp.watch('./src/content/**/*.md', ['metalsmith']);
 });
 
@@ -120,5 +116,3 @@ gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components'
 
 // deploy task
 gulp.task('deploy', ['gh-pages']);
-
-
