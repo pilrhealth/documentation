@@ -22,24 +22,25 @@
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li>
-          <a href="/documentation/pages/basics">Getting Started</a>
+          <a href="/documentation/pages/getting-started">Getting Started</a>
         </li>
         <li class="active">
-          <a href="/documentation/pages/tutorial">Tutorial</a>
+          <a href="/documentation/pages/tutorials">Tutorials</a>
         </li>
         <li>
           <a href="/documentation/pages/api">API </a>
         </li>
         <li>
-          <a href="/documentation/pages/r">R Integration</a>
+          <a href="/documentation/pages/r-packages">R Packages</a>
         </li>
         <li>
-          <a href="/documentation/pages/glossary">PiLR Glossary</a>
+          <a href="/documentation/pages/pilr-glossary">PiLR Glossary</a>
         </li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://blog.pilrhealth.com">Blog</a></li> 
+        <li><a href="/documentation">Docs Home</a></li> 
       </ul>
     </nav>
   </div>
@@ -66,7 +67,7 @@
         <div class="col-md-9" role="main">
           <div class="bs-docs-section">
 
-<h2>Basics</h2>
+<h2>Getting Started</h2>
 
 <article>
   <p>PiLR Health is a platform that enables researchers to collect, manage,
@@ -74,14 +75,34 @@ and analyze data from mobile health studies. PiLR was developed on the
 principles of ease-of-use and extensibility. With just a few clicks,
 you can create a fully-functioning project, add a participant, and
 begin collecting data from one or more apps, sensors, or other mobile
-devices. PiLR handles the tedious tasks of merging data from these
-multiple sources.</p>
+devices. PiLR handles the tedious tasks of collecting, merging, and
+summarizing data from these multiple sources.</p>
 <p>PiLR is extensible, both in terms of the devices it can collect data
 from, and its analysis tools. New devices can be routed through PiLR&#39;s
 API, to streamline the data collection process. On the backend, PiLR
-is integrated with the R statistical programming language. So it can
-generate dashboard summaries while your participants are generating
-data, or analyze your data using the power of R. </p>
+is integrated with the R statistical programming language. This means
+you can do things like generate live dashboard summaries using R&#39;s
+powerful charting capabilities, or analyze your study data in
+real-time as participants are generating data. </p>
+<h3 id="pilr-makes-mobile-health-studies-simple">PiLR Makes Mobile Health Studies Simple</h3>
+<p>Whether your study requires gathering data from one source or many,
+PiLR makes the process as simple as possible. For example, say your
+study that requires collecting daily step count data collected via a
+FitBit. At the end of the day, you would like to deliver a survey via
+a smartphone application to ask the user some questions about their
+physical activities and diet that day.</p>
+<p>In PiLR you simply enable the FitBit and EMA <strong>instruments</strong> for your
+participants. The EMA smartphone application allows mobile surveys to
+be distributed to your participants. When the user is finished with
+the survey, they submit their data via the app, and PiLR handles
+combining it with the FitBit data. You get to focus on your results
+immediately, not managing complex datasets from multiple sources.</p>
+<h3 id="advanced-features">Advanced Features</h3>
+<p>PiLR supports many advanced features. You can dynamically enable and
+disable data-collection instruments for different periods of a study,
+assign participants to randomized treatment groups, create custom
+dashboards to view your data, and much more.</p>
+<p>Try the tutorials for a hands-on introduction to PiLR!</p>
 
 </article>
 
