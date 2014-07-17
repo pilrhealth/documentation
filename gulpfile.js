@@ -32,6 +32,8 @@ Handlebars.registerPartial('footer',
                            fs.readFileSync(__dirname +
 '/templates/partials/footer.hbt').toString());
 
+
+// A fresh start! `gulp clean` removes the local build directory. 
 gulp.task('clean', function () {  
     return gulp.src('build', {read: false})
         .pipe(clean());
@@ -60,7 +62,9 @@ gulp.task('images', function() {
 
 // process markdown files using metalsmith
 gulp.task('metalsmith', function() {
-    gulp.src(['src/**/*.md', 'src/index.md'])
+
+
+    gulp.src(['src/**/*.md', 'src/index.md', '/templates/**/*.hbt'])
         .pipe(gulp_fm()).on("data", function(file) {
             assign(file, file.frontMatter); 
             delete file.frontMatter;
@@ -97,7 +101,7 @@ gulp.task('watch', function() {
     gulp.watch('./src/assets/**/*.js', ['js_bower_components']);
     gulp.watch('./src/assets/**/*.css', ['css_bower_components']);
     gulp.watch('./src/index.md', ['metalsmith']);
-    gulp.watch('./templates/**/*.htb', ['metalsmith']);
+    gulp.watch('./templates/**/*.hbt', ['metalsmith']);
     gulp.watch('./src/content/**/*.md', ['metalsmith']);
 });
 
