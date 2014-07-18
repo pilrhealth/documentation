@@ -18,6 +18,7 @@ var Handlebars  = require('handlebars');
 var fs          = require('fs');
 var collections = require('metalsmith-collections');
 var permalinks  = require('metalsmith-permalinks');
+var replace     = require('gulp-replace');
 
 var js_dir    = './build/documentation/assets/javascripts';
 var css_dir   = './build/documentation/assets/styles';
@@ -62,8 +63,6 @@ gulp.task('images', function() {
 
 // process markdown files using metalsmith
 gulp.task('metalsmith', function() {
-
-
     gulp.src(['src/**/*.md', 'src/index.md', '/templates/**/*.hbt'])
         .pipe(gulp_fm()).on("data", function(file) {
             assign(file, file.frontMatter); 
@@ -81,6 +80,9 @@ gulp.task('metalsmith', function() {
                     pattern: ':collection/:title'
                 }))
                 .use(templates('handlebars')))
+        .pipe(replace(/term::(.+)/g, '<dt id ="$1">$1</dt>'))
+        .pipe(replace(/def::(.+)/g, '<dd>$1</dd>'))
+        .pipe(replace(/\[\[(\w+)\]\]/g, '<span style="border-bottom: 1px dotted #000; text-decordation: none" title="$1">$1</span>'))
         .pipe(gulp.dest(inst_dir));
 });
 
@@ -112,7 +114,8 @@ gulp.task('gh-pages', function() {
 });
 
 // default task, build
-gulp.task('default', ['metalsmith', 'js_bower_components', 'css_bower_components', 'images']);
+gulp.task('default', ['metalsmith', 'js_bower_components', 
+                      'css_bower_components', 'images']);
 
 // server task
 gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components', 'images',
