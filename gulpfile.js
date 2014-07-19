@@ -25,6 +25,14 @@ var css_dir   = './build/documentation/assets/styles';
 var image_dir = './build/documentation/assets/images';
 var inst_dir  = './build/documentation';
 
+var glossary  = require('./src/content/pages/pilr-glossary.json');
+var glossary_html = '';
+for(var term in glossary) {
+    glossary_html = glossary_html + 
+        '<dt>' + term + '</dt>' + '\n' + '<dd>' + glossary[term] + 
+        '</dd>\n';
+}
+
 Handlebars.registerPartial('header', 
                            fs.readFileSync(__dirname +
 '/templates/partials/header.hbt').toString());
@@ -80,9 +88,13 @@ gulp.task('metalsmith', function() {
                     pattern: ':collection/:title'
                 }))
                 .use(templates('handlebars')))
-        .pipe(replace(/term::(.+)/g, '<dt id ="$1">$1</dt>'))
-        .pipe(replace(/def::(.+)/g, '<dd>$1</dd>'))
-        .pipe(replace(/\[\[(\w+)\]\]/g, '<span style="border-bottom: 1px dotted #000; text-decordation: none" title="$1">$1</span>'))
+        .pipe(replace(/\[\[glossary_content\]\]/g, 
+                      glossary_html))
+        .pipe(replace(/\[\[(\w+)\]\]/g, 
+                      function(match, p1) { 
+                          return('<span style="border-bottom: 1px dotted #000; text-decordation: none" title="' + 
+                                 glossary[p1] + '">' + p1 + '</span>');
+                      }))
         .pipe(gulp.dest(inst_dir));
 });
 

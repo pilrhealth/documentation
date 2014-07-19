@@ -28,7 +28,7 @@ FitBit. At the end of the day, you would like to deliver a survey via
 a smartphone application to ask the user some questions about their
 physical activities and diet that day.
 
-In PiLR you simply enable the FitBit and EMA [[instruments]] for your
+In PiLR you simply enable the FitBit and EMA [[Instrument]] for your
 participants. The EMA smartphone application allows mobile surveys to
 be distributed to your participants. When the user is finished with
 the survey, they submit their data via the app, and PiLR handles
