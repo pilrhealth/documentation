@@ -75,4 +75,25 @@ be rebuilt using one of the gulp commands above.
 $ gulp clean
 ````
 
+## Build details
 
+### Markdown
+The PiLR docs are written in markdown, a simple markup language.
+
+### Glossary
+
+The./src/content/pages/pilr-glossary.json file contains key/value
+pairs to automatically generate a glossary, using the keys as terms
+and the values as definitions.
+
+These definitions can be used as tooltips in other pages by placing
+'double brackets' (i.e., [[ ]] ) around the word of interest.
+
+For example, in tutorial.md, you'll see "To create a new [[project]],
+...". This syntax will cause the word "project" to be associated with
+a tooltip that shows the definition from the glossary.
+
+### Metalsmith
+
+The markdown files are processed through a series of [Metalsmith](www.metalsmith.io/))
+plugins. 

@@ -16,7 +16,7 @@ collect some simple GPS location data from a smartphone application.
 ## Launch Project Wizard 
 
 Visit PilR Health Home by clicking on the logo in the upper-left
-corner of the page. To create a new project, just click the '+ New
+corner of the page. To create a new [[project]], just click the '+ New
 project...' link under the list of projects on the right hand side of
 of the Home screen.
 
