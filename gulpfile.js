@@ -115,6 +115,7 @@ gulp.task('watch', function() {
     gulp.watch('./src/assets/**/*.js', ['js_bower_components']);
     gulp.watch('./src/assets/**/*.css', ['css_bower_components']);
     gulp.watch('./src/index.md', ['metalsmith']);
+    gulp.watch('./src/content/**/*.json', ['metalsmith']);
     gulp.watch('./templates/**/*.hbt', ['metalsmith']);
     gulp.watch('./src/content/**/*.md', ['metalsmith']);
 });
@@ -130,8 +131,8 @@ gulp.task('default', ['metalsmith', 'js_bower_components',
                       'css_bower_components', 'images']);
 
 // server task
-gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components', 'images',
-                     'watch', 'webserver', 'livereload']);
+gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components', 
+                     'images', 'watch', 'webserver', 'livereload']);
 
 // deploy task
 gulp.task('deploy', ['gh-pages']);
