@@ -33,6 +33,12 @@ immediately after the constant string 'bearer'. For example, if
 $access_token is your access token, then the HTTP header should
 contain the following field:
 
+## API Versioning
+
+The PiLR API is currently at version 1. API calls will contain the
+version number as part of the request. Therefore, API calls contain
+the string "v1".
+
 ````
 authorization: "bearer $access_token"
 ````
@@ -57,7 +63,7 @@ Obtain an access token for a given API consumer, given an activation
 key defined in PiLR.
 
 ````
-GET /api/token
+GET /api/v1/token
 ````
 
 - Parameters
@@ -96,7 +102,7 @@ Variable Definitions
 Participant and project information
 
 ````
-GET /api/$project/participant/$participant
+GET /api/v1/$project/participant/$participant
 ````
 
 #### List Participant Periods
@@ -104,7 +110,7 @@ List of periods the instrument is scheduled for this participant, with
 dates if applicable.
 
 ````
-GET  /api/$project/instrument/$instrument/
+GET  /api/v1/$project/instrument/$instrument/
       participant/$participant/period
 ````
 
@@ -112,7 +118,7 @@ GET  /api/$project/instrument/$instrument/
 List of instrument setting values for that period, including multiple epochs.
 
 ````
-GET /api/$project/instrument/$instrument 
+GET /api/v1/$project/instrument/$instrument 
     /participant/$participant /period/$period/setting
 ````
 
@@ -120,7 +126,7 @@ GET /api/$project/instrument/$instrument
 Config data specific to that instrument and period.
 
 ````
-GET /api/$project/instrument/$instrument/
+GET /api/v1/$project/instrument/$instrument/
      participant/$participant/period/$period/config
 ````
 
@@ -128,7 +134,7 @@ GET /api/$project/instrument/$instrument/
 List of data sets and schemas linked to the instrument.
 
 ````
-GET /api/$project/instrument/$instrument 
+GET /api/v1/$project/instrument/$instrument 
     /participant/$participant/dataset
 ````
 
@@ -136,7 +142,7 @@ GET /api/$project/instrument/$instrument
 Read participant data from a dataset. See Instrument API Parameters.
 
 ````
-GET /api/$project/instrument/$instrument/
+GET /api/v1/$project/instrument/$instrument/
      participant/$participant/
      dataset/$dataset/$schema_version/data
 ````
@@ -145,7 +151,7 @@ GET /api/$project/instrument/$instrument/
 Add new data for that dataset. Data must be in body.
 
 ````
-POST /api/$project/instrument/$instrument/
+POST /api/v1/$project/instrument/$instrument/
       participant/$participant/
       dataset/$dataset/$schema_version/data	
 ````
@@ -170,35 +176,35 @@ scenarios, such as after project data analysis applications.
 List projects on the system
 
 ````
-GET /api/project
+GET /api/v1/project
 ````
 
 #### List datasets
 List datasets for a project
 
 ````
-GET /api/$project/dataset
+GET /api/v1/$project/dataset
 ````
 
 #### List participants
 List participants for a project
 
 ````
-GET /api/$project/participant
+GET /api/v1/$project/participant
 ````
 
 #### List groups
 List groups for a project
 
 ````
-GET /api/$project/group
+GET /api/v1/$project/group
 ````
 
 #### List periods
 List periods for a project
 
 ````
-GET /api/$project/period
+GET /api/v1/$project/period
 ````
 
 
@@ -206,7 +212,7 @@ GET /api/$project/period
 Read datasets for a project. See Analysis API Parameters.
 
 ````
-GET	/api/$project/$dataStream/$schema/data	
+GET	/api/v1/$project/$dataStream/$schema/data	
 See Analysis API Parameters.
 ````
 
@@ -215,7 +221,7 @@ See Analysis API Parameters.
 Write new data to a project. See Analysis API Parameters. 
 
 ````
-POST /api/$project/$dataStream/$schema/data	
+POST /api/v1/$project/$dataStream/$schema/data	
 ````
 
 Body: The JSON
