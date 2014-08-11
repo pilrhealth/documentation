@@ -87,7 +87,11 @@ the data into a function for analysis.</p>
 </ol>
 <p>For these two types of use cases, we provide different levels of API
 access.  We have split out the sections below to address each
-individually. However, first we will discuss security. </p>
+individually. </p>
+<h2 id="api-versioning">API Versioning</h2>
+<p>The PiLR API is currently at version 1. API calls will contain the
+version number as part of the request. Therefore, API calls contain
+the string &quot;v1&quot;.</p>
 <h2 id="security-authentication-and-authorization">Security: Authentication and Authorization</h2>
 <p>All PiLR API calls are subject to an authentication process. To
 succesfully access the API, each request the client sends should
@@ -110,7 +114,7 @@ to the following resource.</p>
 <h3 id="obtain-access-token">Obtain Access Token</h3>
 <p>Obtain an access token for a given API consumer, given an activation
 key defined in PiLR.</p>
-<pre><code>GET /api/token
+<pre><code>GET /api/v1/token
 </code></pre><ul>
 <li>Parameters</li>
 </ul>
@@ -152,32 +156,32 @@ information after the activation step.</p>
 </ul>
 <h4 id="list-participant-information">List participant information</h4>
 <p>Participant and project information</p>
-<pre><code>GET /api/$project/participant/$participant
+<pre><code>GET /api/v1/$project/participant/$participant
 </code></pre><h4 id="list-participant-periods">List Participant Periods</h4>
 <p>List of periods the instrument is scheduled for this participant, with
 dates if applicable.</p>
-<pre><code>GET  /api/$project/instrument/$instrument/
+<pre><code>GET  /api/v1/$project/instrument/$instrument/
       participant/$participant/period
 </code></pre><h4 id="list-instrument-settings">List Instrument Settings</h4>
 <p>List of instrument setting values for that period, including multiple epochs.</p>
-<pre><code>GET /api/$project/instrument/$instrument 
+<pre><code>GET /api/v1/$project/instrument/$instrument 
     /participant/$participant /period/$period/setting
 </code></pre><h4 id="list-configuration-data">List Configuration Data</h4>
 <p>Config data specific to that instrument and period.</p>
-<pre><code>GET /api/$project/instrument/$instrument/
+<pre><code>GET /api/v1/$project/instrument/$instrument/
      participant/$participant/period/$period/config
 </code></pre><h4 id="list-datasets">List Datasets</h4>
 <p>List of data sets and schemas linked to the instrument.</p>
-<pre><code>GET /api/$project/instrument/$instrument 
+<pre><code>GET /api/v1/$project/instrument/$instrument 
     /participant/$participant/dataset
 </code></pre><h4 id="read-participant-data">Read Participant Data</h4>
 <p>Read participant data from a dataset. See Instrument API Parameters.</p>
-<pre><code>GET /api/$project/instrument/$instrument/
+<pre><code>GET /api/v1/$project/instrument/$instrument/
      participant/$participant/
      dataset/$dataset/$schema_version/data
 </code></pre><h4 id="write-participant-data">Write Participant Data</h4>
 <p>Add new data for that dataset. Data must be in body.</p>
-<pre><code>POST /api/$project/instrument/$instrument/
+<pre><code>POST /api/v1/$project/instrument/$instrument/
       participant/$participant/
       dataset/$dataset/$schema_version/data
 </code></pre><h3 id="processing-api">Processing API</h3>
@@ -194,26 +198,26 @@ scenarios, such as after project data analysis applications.</p>
 <h3 id="processing-api-documentation">Processing API Documentation</h3>
 <h4 id="list-projects">List projects</h4>
 <p>List projects on the system</p>
-<pre><code>GET /api/project
+<pre><code>GET /api/v1/project
 </code></pre><h4 id="list-datasets">List datasets</h4>
 <p>List datasets for a project</p>
-<pre><code>GET /api/$project/dataset
+<pre><code>GET /api/v1/$project/dataset
 </code></pre><h4 id="list-participants">List participants</h4>
 <p>List participants for a project</p>
-<pre><code>GET /api/$project/participant
+<pre><code>GET /api/v1/$project/participant
 </code></pre><h4 id="list-groups">List groups</h4>
 <p>List groups for a project</p>
-<pre><code>GET /api/$project/group
+<pre><code>GET /api/v1/$project/group
 </code></pre><h4 id="list-periods">List periods</h4>
 <p>List periods for a project</p>
-<pre><code>GET /api/$project/period
+<pre><code>GET /api/v1/$project/period
 </code></pre><h4 id="read-data">Read Data</h4>
 <p>Read datasets for a project. See Analysis API Parameters.</p>
-<pre><code>GET    /api/$project/$dataStream/$schema/data    
+<pre><code>GET    /api/v1/$project/$dataStream/$schema/data    
 See Analysis API Parameters.
 </code></pre><h4 id="write-data">Write Data</h4>
 <p>Write new data to a project. See Analysis API Parameters. </p>
-<pre><code>POST /api/$project/$dataStream/$schema/data
+<pre><code>POST /api/v1/$project/$dataStream/$schema/data
 </code></pre><p>Body: The JSON
 value of the data.</p>
 
