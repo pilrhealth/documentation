@@ -21,7 +21,16 @@ Typically, there are two reasons that an individual would access the API.
    
 For these two types of use cases, we provide different levels of API
 access.  We have split out the sections below to address each
-individually. However, first we will discuss security. 
+individually. 
+
+## API Versioning
+
+The PiLR API is currently at version 1. API calls will contain the
+version number as part of the request. Therefore, API calls contain
+the string "v1".
+
+
+
 
 ## Security: Authentication and Authorization
 
@@ -33,11 +42,6 @@ immediately after the constant string 'bearer'. For example, if
 $access_token is your access token, then the HTTP header should
 contain the following field:
 
-## API Versioning
-
-The PiLR API is currently at version 1. API calls will contain the
-version number as part of the request. Therefore, API calls contain
-the string "v1".
 
 ````
 authorization: "bearer $access_token"

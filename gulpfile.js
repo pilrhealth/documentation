@@ -131,8 +131,7 @@ gulp.task('default', ['metalsmith', 'js_bower_components',
                       'css_bower_components', 'images']);
 
 // server task
-gulp.task('server', ['metalsmith', 'js_bower_components', 'css_bower_components', 
-                     'images', 'watch', 'webserver', 'livereload']);
+gulp.task('server', ['default', 'watch', 'webserver', 'livereload']);
 
 // deploy task
-gulp.task('deploy', ['gh-pages']);
+gulp.task('deploy', ['default', 'gh-pages']);
