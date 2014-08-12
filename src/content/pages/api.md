@@ -63,7 +63,7 @@ to the following resource.
 ### Obtain Access Token
 
 
-Obtain an access token for a given API consumer, given an activation
+To obtain an access token for a given API consumer, given an activation
 key defined in PiLR.
 
 ````
