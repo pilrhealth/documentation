@@ -56,9 +56,9 @@ gulp.task('js_bower_components', function() {
         .pipe(gulp.dest(js_dir));
 });
 
-// process bower css
+// process css (bower and custom)
 gulp.task('css_bower_components', function() {
-  gulp.src('./src/assets/**/*.min.css')
+  gulp.src(['./src/assets/**/*.min.css', './src/css/*.min.css'])
         .pipe(concat('bower.css'))
         .pipe(minify_css({keepBreaks:true}))
         .pipe(gulp.dest(css_dir));
