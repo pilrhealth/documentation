@@ -50,7 +50,7 @@ gulp.task('clean', function () {
 
 // process bower_components
 gulp.task('js_bower_components', function() {
-    gulp.src(['src/assets/**/*.min.js']) 
+    gulp.src(['src/assets/jquery/dist/jquery.min.js', 'src/assets/**/*.min.js']) 
         .pipe(flatten())
         .pipe(concat('bower.js'))
         .pipe(gulp.dest(js_dir));
@@ -58,7 +58,7 @@ gulp.task('js_bower_components', function() {
 
 // process bower css
 gulp.task('css_bower_components', function() {
-  gulp.src('./src/assets/**/*.css')
+  gulp.src('./src/assets/**/*.min.css')
         .pipe(concat('bower.css'))
         .pipe(minify_css({keepBreaks:true}))
         .pipe(gulp.dest(css_dir));
