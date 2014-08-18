@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- add stylesheet links here -->
+    <link href="/documentation/assets/styles/bower.css" rel="stylesheet">
+  </head>
+
+  <body>
+  
+  <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://www.pilrhealth.com" class="navbar-brand">PiLR Health</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/documentation/pages/getting-started">Getting Started</a>
+        </li>
+        <li class="active">
+          <a href="/documentation/pages/tutorials">Tutorials</a>
+        </li>
+        <li>
+          <a href="/documentation/pages/api">API </a>
+        </li>
+        <li>
+          <a href="/documentation/pages/r-packages">R Packages</a>
+        </li>
+        <li>
+          <a href="/documentation/pages/pilr-glossary">PiLR Glossary</a>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://blog.pilrhealth.com">Blog</a></li> 
+        <li><a href="/documentation">Docs Home</a></li> 
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <div class="bs-docs-header" id="content">
+      <div class="container">
+        <img src="/documentation/assets/images/brand-text.png">
+        <h1>Documentation</h1>
+    </div>
+
+
+      <a href="https://github.com/pilrhealth/documentation">
+        <img style="position: absolute; top: 0; right: 0; border: 0;"
+             src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+             alt="Fork me on GitHub"
+             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+  </div>
+
+  
+  <div class="container bs-docs-container">
+
+      <div class="row">
+        <div class="col-md-9" role="main">
+          <div class="bs-docs-section">
+
+<h2>Dashboards</h2>
+
+<article>
+  <h1 id="pilr-dashboard-template">PiLR Dashboard Template</h1>
+<h2 id="description">Description</h2>
+<p>The pilr_dashboard_panel function in the pilrdash package is called by all dashboards in
+order to generate their display. It extracts a specified dataset from the PiLR server, and 
+applies the specified function to the dataset. Results can be returned to the dashboard in 
+various formats, such as Vega (for ggvis), static images, or a generic HTML format. This template
+follows the necessary format for a function to be passed to pilr_dashboard_panel.   </p>
+<h2 id="creating-your-function">Creating Your Function</h2>
+<p>Custom dashboard functions can be created in R and hosted as a package on GitHub. To begin, clone this
+template repo on to your local machine. From there you may write your function in the file &quot;dashtemplate-package.r&quot;<br>All custom functions must include these three arguments:<br><code>data</code> the dataframe read in from a PiLR project<br><code>params</code> a list of all above arguments sent to pilr_dashboard_panel<br><code>...</code> a generic that allows any other argument to be passed through<br>You may wish to update documentation for your function. If so, you can use the roxygen2 package, 
+as well as manually editing the DESCRIPTION file in the template.  </p>
+<h2 id="pilr_dashboard_panel-arguments">pilr_dashboard_panel arguments</h2>
+<p>Each of these arguments can be passed into the pilr_dashboard_panel function:<br><code>package_function</code> Function to be applied to the dataset<br><code>package_url</code> URL pointing to the package on GitHub<br><code>data</code> List of arguments for finding the dataset (data_set, schema, project, pilr_api_server)<br><code>return_type</code> Type to be returned from the function (r:vega, r:image, or r:html)<br><code>filter_params</code> List of parameters for choosing subsets of a dataset (participant, group, date)<br><code>dashboard_params</code> Dashboard parameters(?)  </p>
+<h2 id="access-code">Access Code</h2>
+<p>When testing your function locally, pilr_dashboard_panel needs to read in your PiLR API
+consumer key from a secure file. Create a text file named &quot;pilrsecret.txt&quot; under the folder
+&quot;R&quot; in your function&#39;s package. Paste your access code in this file, followed by a blank line. 
+Our template provides a .gitignore file which causes &quot;pilrsecret.txt&quot; to not be committed to a repo.  </p>
+<h2 id="return-types">Return Types</h2>
+<p>Currently only <a href="http://trifacta.github.io/vega/">Vega</a> return types are supported. A common package for generating Vega visuals in R is <a href="http://ggvis.rstudio.com/">ggvis</a>.  </p>
+<h2 id="webhooks">Webhooks</h2>
+<p>In order to allow OpenCPU to update your package each time you push changes to GitHub, you will need to setup a
+webhook. To do so, go to your package on GitHub and click on Settings-&gt;Webhooks &amp; Services on the sidebar. To read 
+more about OpenCPU and webhooks, see the bottom of <a href="https://www.opencpu.org/api.html">this page</a>.  </p>
+<h2 id="importing-dashboard-definition">Importing Dashboard Definition</h2>
+<p>To import your custom dashboard function into PiLR, you will need to update the parameters in the provided &quot;dash-definition.json&quot; document.   </p>
+<h2 id="private-repo-">Private Repo?</h2>
+<p>If you wish for your GitHub repo to be private, you will need to add the Github user &quot;pilrhealth&quot; (without quotes)
+as a collaborator. This will allow PiLR to see and use your package.</p>
+
+</article>
+
+
+  <!-- add all script tags here -->
+  <script src = "/documentation/assets/javascripts/bower.js"></script>
+  </body>
+</html>
+
+
+
