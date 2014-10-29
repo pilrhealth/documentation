@@ -8,7 +8,7 @@ template: home.hbt
 ### [Getting Started](pages/getting-started)
 #### Learn what PiLR Health is all about. 
 
-### [Tutorial](pages/tutorial)
+### [Tutorial](pages/tutorials)
 #### Start collecting mobile health data in minutes.
 
 ### [API Documentation](pages/api)
