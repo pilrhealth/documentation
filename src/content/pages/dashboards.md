@@ -26,9 +26,11 @@ account. If you don't have a GitHub account, you can create one
 now. It's free!
 
 2. Rename the forked repository. Choose a name without any dashes or
-underscores. We are creating an R package and those characters are not
-allowed in R package names.  For the purposes of this tutorial, let's
-say you renamed it *dashtest*.
+underscores. The repo contains a dash character by default, so this
+step is necessary. Why can't we use dashes or underscores? It is
+because we are creating an R package that we can run from Github.
+Those special characters are not allowed in R package names.  For the
+purposes of this tutorial, let's rename the repository *dashtest*.
 
 3. Clone the forked repo. Now you'll have a local copy of the 
 *dashtest* repo in your Github account. 

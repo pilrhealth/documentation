@@ -8,8 +8,15 @@ template: home.hbt
 ### [Getting Started](pages/getting-started)
 #### Learn what PiLR Health is all about. 
 
-### [Tutorial](pages/tutorials)
+### [PiLR Tutorial](pages/tutorials)
 #### Start collecting mobile health data in minutes.
+
+### [Dashboard Tutorial](pages/dashboards)
+#### Start collecting mobile health data in minutes.
+
+### [R Data Processing Unit Tutorial](pages/data-processing-unit)
+#### Start collecting mobile health data in minutes.
+
 
 ### [API Documentation](pages/api)
 #### Write your own apps, manage your study data, and more. 
