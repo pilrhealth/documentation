@@ -3,7 +3,7 @@ title: Home
 template: home.hbt
 ---
  
-# PiLR Health is a platform for researchers that simplifies collecting mobile health data.
+# PiLR Health is a web platform for researchers that simplifies collecting mobile health data.
 
 ### [Getting Started](pages/getting-started)
 #### Learn what PiLR Health is all about. 
